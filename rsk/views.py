@@ -24,3 +24,21 @@ def create_webpage(request):
         return HttpResponse("<h3>Webpage Added Successfully</h3>")
     topics=Topic.objects.all()
     return render(request,"create_Webpage.html",context={'topics':topics})
+
+def display_topics(request):
+    topics=Topic.objects.all()
+    return render(request,"display_topic.html",context={'topics':topics})
+
+def display_topic(request,id):
+    topics=Topic.objects.filter(id=id)
+    return render(request,"display_topic.html",context={'topics':topics})
+
+
+def display_webpages(request):
+    webpages=Webpage.objects.all()
+    return render(request,"display_webpage.html",context={'webpages':webpages})
+
+def display_webpage(request,webid):
+    webpages=Webpage.objects.filter(id=webid)
+    return render(request,"display_webpage.html",context={'webpages':webpages})
+    
