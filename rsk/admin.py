@@ -16,3 +16,4 @@ class AccesDetailsAdminView(admin.ModelAdmin):
 admin.site.register(models.Topic,TopicAdminView)
 admin.site.register(models.Webpage,WebpageAdminView)
 admin.site.register(models.AccesDetails,AccesDetailsAdminView)
+admin.site.register(models.ProfilePic)

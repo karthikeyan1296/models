@@ -28,4 +28,14 @@ urlpatterns = [
     path('update/topic/<id>',views.update_topic,name="update_topic"),
     path('update/webpage/<id>',views.update_webpage,name="update_webpage"),
     path('delete/topic/<id>',views.delete_topic,name="delete_topic"),
+    path('disp_img/<id>',views.disp_img,name="disp_img"),
+    path('topic_form/',views.topic_modelform,name="topicmodel_form"),
+    path('web_form/',views.webform,name="web_form"),
+    path('create_user/',views.create_user,name="create_user"),
+    
 ]
+
+from django.conf import settings
+from django.conf.urls.static import static
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)

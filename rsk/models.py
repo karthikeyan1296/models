@@ -3,7 +3,7 @@ from django.core import validators
 from django.core.exceptions import ValidationError
 
 class Topic(models.Model):
-    topic_name=models.CharField(max_length=30,unique=True,blank=False,validators=[validators.MaxLengthValidator(10)])
+    topic_name=models.CharField(max_length=30,unique=True,blank=False,validators=[validators.MaxLengthValidator(30)])
 
     def __str__(self):
         return self.topic_name
@@ -27,4 +27,11 @@ class AccesDetails(models.Model):
     def __str__(self):
         return str(self.datetime).split(" ")[0]
     
+
+class ProfilePic(models.Model):
+    name=models.CharField(max_length=100,unique=True,validators=[validate_name],blank=False)
+    image=models.ImageField(upload_to="%Y/%m/%d")
+
+    def __str__(self):
+        return self.name
     

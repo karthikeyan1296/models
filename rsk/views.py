@@ -72,3 +72,38 @@ def delete_topic(request,id):
         t.delete()
         return HttpResponse("<h3>deletion is duccessful</h3>")
     return HttpResponse("<h3>Record not found</h3>")
+
+def disp_img(request,id):
+    profile=ProfilePic.objects.get(id=id)
+    return render(request,"disp_image.html",{'profile':profile})
+
+from rsk.forms import *
+
+def topic_modelform(request):
+    if request.method=="POST":
+        form=TopicForm(request.POST)
+        if form.is_valid():
+            form.save()
+    form=TopicForm()
+    return render(request,'modelform.html',{'form':form})
+
+def webform(request):
+    if request.method=="POST":
+        form=WebpageForm(request.POST)
+        if form.is_valid():
+            form.save()
+        else:
+            return render(request,'modelform.html',{'form':form})
+    form=WebpageForm()
+    return render(request,'modelform.html',{'form':form})
+
+def create_user(request):
+    if request.method=="POST":
+        user=UserModelForm(request.POST)
+        if user.is_valid():
+            password=user.cleaned_data['password']
+            user=user.save(commit=False)
+            user.set_password(password)
+            user.save()
+    form=UserModelForm()
+    return render(request,"modelform.html",{'form':form})
